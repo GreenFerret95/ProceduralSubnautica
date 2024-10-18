@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build OpenGL Project",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-std=c++17",
+                "-m64",
+                "src/main.cpp",
+                "src/window/window.cpp",
+                "src/ecs/systems/render_system.cpp",
+                "src/ecs/systems/input_system.cpp",
+                "src/ecs/systems/camera_system.cpp",
+                "src/ecs/systems/terrain_system.cpp",   // Add terrain system source file
+                "src/utility/simplex_noise.cpp", // Add this to ensure PerlinNoise is linked
+                "-o",
+                "build/main.exe",
+                "-I", "C:/libs/GLFW/include",
+                "-I", "C:/libs/GLEW/include",
+                "-I", "C:/libs/GLM",
+                "-I", "src/ecs/utility",  // Add utility directory for perlin_noise.h
+                "-L", "C:/libs/GLFW/lib-mingw-w64",
+                "-L", "C:/libs/GLEW/lib/Release/x64",
+                "-DGLEW_STATIC",
+                "-lglew32s",
+                "-lglfw3",
+                "-lopengl32",
+                "-lgdi32"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Task to build the OpenGL project"
+        }
+    ]
+}
